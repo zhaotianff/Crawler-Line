@@ -1,2 +1,5 @@
 # Crawler-Line
-a C# command-line crawler
+C# command-line crawler
+
+# License
+[MIT](LICENSE)
