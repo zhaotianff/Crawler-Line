@@ -1,4 +1,5 @@
-﻿using System;
+﻿using crawler_line.Util;
+using System;
 using System.CommandLine;
 using System.CommandLine.Invocation;
 using System.IO;
@@ -15,10 +16,19 @@ namespace crawler_line
             //添加一个打印版本的Command
             var versionCommand = new Command("--version");
             versionCommand.AddAlias("-v");
-
             //添加到RootCommand
             rootCommand.AddCommand(versionCommand);
-          
+
+            //添加一个获取网页源码Option
+            var getHtmlSourceOption = new Option<string>(new string[] { "--url" ,"-u"},"website url");
+
+            rootCommand.AddOption(getHtmlSourceOption);
+            //getHtmlSourceOption执行的操作
+            rootCommand.Handler = CommandHandler.Create<string>((url) =>
+            {
+                WebUtil.GetHtmlSource(url);
+            });
+
             rootCommand.Description = ".net core command-line crawler";
 
             //RootCommand执行的操作

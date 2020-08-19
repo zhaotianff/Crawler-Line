@@ -4,7 +4,7 @@ using System.Text;
 
 namespace crawler_line.Util
 {
-    class RegexUtil
+    public class RegexUtil
     {
     }
 }
