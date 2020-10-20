@@ -1,4 +1,5 @@
-﻿using System;
+﻿using crawler_line.Model;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
@@ -8,11 +9,32 @@ namespace crawler_line.Util
 {
     public class WebUtil
     {
-        public static async void GetHtmlSource(string url)
+        private static string Url = "";
+
+        public static bool SetUrl(string url)
         {
+            Url = url;
+            return RegexUtil.MatchUrl(url);
+        }        
+
+        public static async Task<string> GetHtmlSourceAsync()
+        {
+            if (string.IsNullOrEmpty(Url))
+                return "";
+
             HttpClient httpClient = new HttpClient();
-            var html = await httpClient.GetStringAsync(url);
-            Console.WriteLine(html);
+            var html = await httpClient.GetStringAsync(Url);
+            return html;
+        }
+
+        public static async Task<List<string>> GetImageAsync()
+        {
+            var htmlSource = await GetHtmlSourceAsync();
+
+            if (string.IsNullOrEmpty(htmlSource))
+                return new List<string>();
+
+            return RegexUtil.MatchImg(htmlSource);
         }
     }
 }
