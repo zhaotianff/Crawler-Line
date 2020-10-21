@@ -1,8 +1,7 @@
 {
   "profiles": {
     "crawler-line": {
-      "commandName": "Project",
-      "commandLineArgs": "github"
+      "commandName": "Project"
     }
   }
 }

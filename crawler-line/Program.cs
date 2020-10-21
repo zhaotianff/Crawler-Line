@@ -67,19 +67,5 @@ namespace crawler_line
             var htmlSource = await WebUtil.GetHtmlSourceAsync();
             Console.WriteLine(htmlSource);
         }
-
-        static void PrintVersion()
-        {
-            Assembly assembly = Assembly.GetExecutingAssembly();
-            var versionStr = assembly.GetName().Version.ToString();
-            var appName = assembly.GetName().Name;
-            Console.WriteLine($"{appName} - {versionStr}");
-        }
-
-        static void PrintUsageInfo()
-        {
-            //Console.WriteLine(".net core command-line crawler.");
-            Console.WriteLine("Usage Info");
-        }
     }
 }
